@@ -1,0 +1,118 @@
+.calendar-container {
+    padding: 0.5rem;
+    height: 100%;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.calendar-header button {
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    min-height: 60px;
+}
+
+.calendar-day.empty {
+    background: transparent;
+    cursor: default;
+}
+
+.calendar-day:hover:not(.empty) {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.calendar-day.selected {
+    background-color: var(--accent-color) !important;
+    color: #ffffff !important;
+}
+
+.calendar-day.selected .day-number {
+    font-weight: 700;
+}
+
+.day-number {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.calendar-day.holiday .day-number {
+    color: #ef4444;
+    /* Red for Sun/Holidays */
+}
+
+.calendar-day.saturday .day-number {
+    color: #3b82f6;
+    /* Blue for Saturdays */
+}
+
+.calendar-day.selected .day-number {
+    color: #ffffff !important;
+}
+
+.day-events {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.calendar-event {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+    border-radius: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+.calendar-day.selected .calendar-event {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-left-color: #ffffff !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.event-more {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
