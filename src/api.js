@@ -1,30 +1,34 @@
-const API_URL = 'http://localhost:5001/api';
+import { INITIAL_PROJECTS } from './data';
 
-// Since localtunnel might be used, we might need to handle hostnames.
-// But for now, we'll assume the client accesses the same server machine or over tunnel.
-// To make it work over tunnel seamlessly, we can use relative paths if proxied, 
-// or let it point to the current window's hostname.
-
-const getBaseUrl = () => {
-    // If we're on localtunnel, the backend should ideally be on the same tunnel or a different one.
-    // However, localtunnel usually tunnels ONE port. 
-    // To solve this, we should either proxy via Vite or use the same port.
-    // For simplicity with localtunnel, relative path is best IF proxied.
-    return '/api';
-};
+// 배포 환경에서는 정적 데이터를 사용하고, 개발 환경에서는 API 호출
+const isProduction = import.meta.env.PROD;
+let projectsData = [...INITIAL_PROJECTS];
 
 export const fetchProjects = async () => {
-    const response = await fetch(`${getBaseUrl()}/projects`);
-    if (!response.ok) throw new Error('Failed to fetch projects');
-    return response.json();
+    if (isProduction) {
+        // 배포 환경에서는 정적 데이터 반환
+        return Promise.resolve([...projectsData]);
+    } else {
+        // 개발 환경에서는 API 호출
+        const response = await fetch('/api/projects');
+        if (!response.ok) throw new Error('Failed to fetch projects');
+        return response.json();
+    }
 };
 
 export const saveProjects = async (projects) => {
-    const response = await fetch(`${getBaseUrl()}/projects`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(projects)
-    });
-    if (!response.ok) throw new Error('Failed to save projects');
-    return response.json();
+    if (isProduction) {
+        // 배포 환경에서는 메모리에 저장
+        projectsData = [...projects];
+        return Promise.resolve({ success: true });
+    } else {
+        // 개발 환경에서는 API 호출
+        const response = await fetch('/api/projects', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(projects)
+        });
+        if (!response.ok) throw new Error('Failed to save projects');
+        return response.json();
+    }
 };
