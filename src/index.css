@@ -8,18 +8,18 @@
   --border-color: #e2e8f0;
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --primary-color: #3b82f6;
-  --primary-hover: #2563eb;
+  --primary-color: #0d6efd;  /* H&A PharmaChem 브랜드 색상으로 변경 */
+  --primary-hover: #0b5ed7;
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --danger-color: #ef4444;
   --info-color: #0ea5e9;
   
   /* 사이드바 색상 - 라이트 모드 */
-  --sidebar-bg: #1e293b;
+  --sidebar-bg: #0f172a;
   --sidebar-text: #f8fafc;
   --sidebar-hover: rgba(255, 255, 255, 0.1);
-  --sidebar-active: #3b82f6;
+  --sidebar-active: #0d6efd;
   
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.9);
@@ -41,10 +41,10 @@
   --text-secondary: #cbd5e1;
   
   /* 사이드바 색상 - 다크 모드 */
-  --sidebar-bg: #0f172a;
+  --sidebar-bg: #020617;
   --sidebar-text: #f8fafc;
   --sidebar-hover: rgba(255, 255, 255, 0.05);
-  --sidebar-active: #3b82f6;
+  --sidebar-active: #0d6efd;
   
   --glass-bg: rgba(15, 23, 42, 0.8);
   --glass-border: rgba(51, 65, 85, 0.5);
@@ -104,7 +104,7 @@ button.primary {
 
 button.primary:hover {
   background: var(--primary-hover);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.4);
 }
 
 /* Progress Bar Styles */
@@ -162,7 +162,7 @@ input, select, textarea {
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
 }
 
 /* 상태 색상 클래스 */
