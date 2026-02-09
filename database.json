@@ -1,71 +1,362 @@
 [
   {
     "id": 1,
-    "client": "삼성전자",
-    "capacity": 500,
-    "startDate": "2026-01-25",
-    "endDate": "2026-02-05",
-    "dueDate": "2026-02-07",
-    "rawMaterial": "케미칼 A",
-    "productName": "특수 코팅액",
+    "client": "아지무역",
+    "capacity": 5.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-06",
+    "dueDate": "2026-02-06",
+    "rawMaterial": "",
+    "productName": "COOSOME(2%)",
     "color": "#3b82f6",
     "includeHolidays": false,
     "manager": {
-      "production": "김생산",
-      "admin": "이관리",
-      "delivery": "박배송"
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
     },
-    "progress": 65,
-    "dailyProduction": [
-      {
-        "date": "2026-01-25",
-        "amount": 50
-      },
-      {
-        "date": "2026-01-26",
-        "amount": 80
-      }
-    ],
-    "note": "품질 검사 철저히 진행할 것"
+    "progress": 45,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -1"
   },
   {
     "id": 2,
-    "client": "LG에너지솔루션",
-    "capacity": 1200,
-    "startDate": "2026-01-31",
-    "endDate": "2026-02-15",
-    "dueDate": "2026-02-18",
-    "rawMaterial": "전해질 B",
-    "productName": "2차전지 소재",
+    "client": "(주)이미인",
+    "capacity": 10.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-11",
+    "dueDate": "2026-02-11",
+    "rawMaterial": "",
+    "productName": "CRYSTAL BEAD(ORANGE-C)",
     "color": "#10b981",
-    "includeHolidays": true,
+    "includeHolidays": false,
     "manager": {
-      "production": "최공정",
-      "admin": "정기획",
-      "delivery": "강물류"
+      "production": "방승일",
+      "admin": "김성수",
+      "delivery": "김성수"
     },
-    "progress": 10,
+    "progress": 33,
     "dailyProduction": [],
-    "note": "긴급 발주건"
+    "note": "일자번호: 2026/02/06 -2"
   },
   {
-    "client": "비전피오비",
-    "productName": "메디솔브",
-    "rawMaterial": "코큐텐",
-    "capacity": "100",
-    "startDate": "2026-02-11",
-    "endDate": "2026-02-13",
-    "dueDate": "2026-02-19",
-    "progress": 0,
-    "color": "#f7ce3b",
-    "manager": {
-      "production": "",
-      "admin": "",
-      "delivery": ""
-    },
-    "note": "",
-    "id": 1770012562216,
+    "id": 3,
+    "client": "(주)네이처랙",
+    "capacity": 160.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-12",
+    "dueDate": "2026-02-12",
+    "rawMaterial": "",
+    "productName": "RETINOL FLUID",
+    "color": "#ef4444",
     "includeHolidays": false,
-    "dailyProduction": []
+    "manager": {
+      "production": "김승준",
+      "admin": "이광재",
+      "delivery": "이광재"
+    },
+    "progress": 13,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -3"
+  },
+  {
+    "id": 4,
+    "client": "(주)네이처랙",
+    "capacity": 100.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-12",
+    "dueDate": "2026-02-12",
+    "rawMaterial": "",
+    "productName": "NT FLUID",
+    "color": "#f59e0b",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김승준",
+      "admin": "이광재",
+      "delivery": "이광재"
+    },
+    "progress": 28,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -3"
+  },
+  {
+    "id": 5,
+    "client": "(주)더원코스메틱",
+    "capacity": 20.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-10",
+    "dueDate": "2026-02-10",
+    "rawMaterial": "",
+    "productName": "AQUA SHEA BUTTER",
+    "color": "#8b5cf6",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 43,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -4"
+  },
+  {
+    "id": 6,
+    "client": "(주)코스메카코리아",
+    "capacity": 100.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-23",
+    "dueDate": "2026-02-23",
+    "rawMaterial": "",
+    "productName": "ADENOSOLVE 2%",
+    "color": "#ec4899",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 44,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -5"
+  },
+  {
+    "id": 7,
+    "client": "(주)코스메카코리아",
+    "capacity": 100.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-03-04",
+    "dueDate": "2026-03-04",
+    "rawMaterial": "",
+    "productName": "ADENOSOLVE 2%",
+    "color": "#14b8a6",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 38,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -5"
+  },
+  {
+    "id": 8,
+    "client": "(주)코스메카코리아",
+    "capacity": 100.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-03-11",
+    "dueDate": "2026-03-11",
+    "rawMaterial": "",
+    "productName": "ADENOSOLVE 2%",
+    "color": "#f97316",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 47,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -5"
+  },
+  {
+    "id": 9,
+    "client": "(주)엠코스",
+    "capacity": 200.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "AQUA VD",
+    "color": "#6366f1",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 33,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -6"
+  },
+  {
+    "id": 10,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 10.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "PEPTARICH COMPLEX TM",
+    "color": "#84cc16",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 23,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -7"
+  },
+  {
+    "id": 11,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 20.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "ADENOSOLVE 2%",
+    "color": "#3b82f6",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 25,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -7"
+  },
+  {
+    "id": 12,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 20.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "PEPTARICH-MCT2X",
+    "color": "#10b981",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 34,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -7"
+  },
+  {
+    "id": 13,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 20.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "SKINSOME(NG)",
+    "color": "#ef4444",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 24,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -7"
+  },
+  {
+    "id": 14,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 10.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "VITA 12 SOME(EWG)",
+    "color": "#f59e0b",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 26,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -7"
+  },
+  {
+    "id": 15,
+    "client": "(주)한국화장품제조용성공장",
+    "capacity": 5.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-24",
+    "dueDate": "2026-02-24",
+    "rawMaterial": "",
+    "productName": "GOLD FIBER(500)-DOWN",
+    "color": "#8b5cf6",
+    "includeHolidays": false,
+    "manager": {
+      "production": "방승일",
+      "admin": "김성수",
+      "delivery": "김성수"
+    },
+    "progress": 47,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -8"
+  },
+  {
+    "id": 16,
+    "client": "한솔생명과학(주)",
+    "capacity": 100.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-20",
+    "dueDate": "2026-02-20",
+    "rawMaterial": "",
+    "productName": "엑시펩타이드중금콤플렉스",
+    "color": "#ec4899",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김승준",
+      "admin": "이광재",
+      "delivery": "이광재"
+    },
+    "progress": 39,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -9"
+  },
+  {
+    "id": 17,
+    "client": "주식회사바이오네이처",
+    "capacity": 20.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-13",
+    "dueDate": "2026-02-13",
+    "rawMaterial": "",
+    "productName": "PEARL CREAM-SF",
+    "color": "#14b8a6",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 20,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -10"
+  },
+  {
+    "id": 18,
+    "client": "(주)딜리체이코스",
+    "capacity": 10.00,
+    "startDate": "2026-02-06",
+    "endDate": "2026-02-13",
+    "dueDate": "2026-02-13",
+    "rawMaterial": "",
+    "productName": "VITASOME 12",
+    "color": "#f97316",
+    "includeHolidays": false,
+    "manager": {
+      "production": "김용덕",
+      "admin": "김용덕",
+      "delivery": "김용덕"
+    },
+    "progress": 39,
+    "dailyProduction": [],
+    "note": "일자번호: 2026/02/06 -11"
   }
 ]

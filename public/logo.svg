@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 원 -->
+  <circle cx="100" cy="100" r="90" fill="#e63946" />
+  
+  <!-- IOT 텍스트 -->
+  <text x="100" y="90" font-family="Arial" font-size="40" font-weight="bold" fill="white" text-anchor="middle">IOT</text>
+  
+  <!-- KOREA 텍스트 -->
+  <text x="100" y="130" font-family="Arial" font-size="30" font-weight="bold" fill="white" text-anchor="middle">KOREA</text>
+  
+  <!-- 장식 요소 -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="white" stroke-width="2" />
+  <circle cx="100" cy="100" r="70" fill="none" stroke="white" stroke-width="1" />
+</svg>
