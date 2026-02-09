@@ -6,6 +6,7 @@ import Clock from './components/Clock.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import ProcessProgress from './components/ProcessProgress.jsx';
 import ProductionDashboard from './components/ProductionDashboard.jsx';
+import { Calendar as CalendarIcon, BarChart3, LineChart, Activity, Upload, PlusCircle, Sun, Moon } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
   const [activeTab, setActiveTab] = useState('calendar'); // 'calendar', 'dashboard', 'progress', 'production'
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // 06:00 ~ 18:00 is Day (Light Mode), otherwise Night (Dark Mode)
   const isDayTime = () => {
@@ -52,6 +54,7 @@ function App() {
   }, [isDarkMode]);
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
+  const toggleSidebar = () => setSidebarCollapsed(!sidebarCollapsed);
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
@@ -68,9 +71,6 @@ function App() {
     setEditingProject(null);
     setIsModalOpen(true);
   };
-
-  const selectedDateString = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
-  const activeProjects = getProjectsByDate(selectedDateString);
 
   // 엑셀 파일 업로드 처리 함수
   const handleFileUpload = (event) => {
@@ -110,6 +110,16 @@ function App() {
       });
   };
 
+  const selectedDateString = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+  const activeProjects = getProjectsByDate(selectedDateString);
+
+  const navItems = [
+    { id: 'calendar', label: '캘린더', icon: <CalendarIcon size={20} /> },
+    { id: 'dashboard', label: '대시보드', icon: <BarChart3 size={20} /> },
+    { id: 'progress', label: '공정 진행률', icon: <Activity size={20} /> },
+    { id: 'production', label: '생산관리 모니터링', icon: <LineChart size={20} /> }
+  ];
+
   return (
     <div className="pms-container">
       {isLoading && (
@@ -117,121 +127,153 @@ function App() {
           <div className="loading-spinner">데이터를 불러오는 중...</div>
         </div>
       )}
-      <header className="pms-header glass-panel">
-        <div className="header-content">
+      
+      <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className="sidebar-header">
           <div className="logo-container">
-            <img src="/logo.png" alt="H&A PharmaChem Logo" className="header-logo" />
-            <h1>생산관리시스템</h1>
+            <img src="/logo.svg" alt="Logo" className="sidebar-logo" />
+            {!sidebarCollapsed && <h2>생산관리시스템</h2>}
           </div>
-          <div className="nav-tabs">
-            <button 
-              className={`nav-tab ${activeTab === 'calendar' ? 'active' : ''}`}
-              onClick={() => setActiveTab('calendar')}
-            >
-              캘린더
-            </button>
-            <button 
-              className={`nav-tab ${activeTab === 'dashboard' ? 'active' : ''}`}
-              onClick={() => setActiveTab('dashboard')}
-            >
-              대시보드
-            </button>
-            <button 
-              className={`nav-tab ${activeTab === 'progress' ? 'active' : ''}`}
-              onClick={() => setActiveTab('progress')}
-            >
-              공정 진행률
-            </button>
-            <button 
-              className={`nav-tab ${activeTab === 'production' ? 'active' : ''}`}
-              onClick={() => setActiveTab('production')}
-            >
-              생산관리 모니터링
-            </button>
-          </div>
-          <div className="header-right">
-            <Clock />
-            <button className="theme-toggle" onClick={toggleTheme} title="테마 전환">
-              {isDarkMode ? '🌙 야간' : '☀️ 주간'}
-            </button>
-            {activeTab === 'calendar' && (
-              <>
-                <label htmlFor="excel-upload" className="excel-upload-btn">
-                  📊 엑셀 업로드
-                </label>
-                <input 
-                  id="excel-upload" 
-                  type="file" 
-                  accept=".xls,.xlsx" 
-                  onChange={handleFileUpload} 
-                  style={{ display: 'none' }} 
-                />
-                <button className="primary" onClick={handleAddProject}>+ 새 프로젝트 추가</button>
-              </>
-            )}
-          </div>
+          <button className="sidebar-toggle" onClick={toggleSidebar}>
+            {sidebarCollapsed ? '›' : '‹'}
+          </button>
         </div>
-      </header>
+        
+        <nav className="sidebar-nav">
+          {navItems.map(item => (
+            <button
+              key={item.id}
+              className={`sidebar-nav-item ${activeTab === item.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(item.id)}
+              title={sidebarCollapsed ? item.label : ''}
+            >
+              <span className="sidebar-icon">{item.icon}</span>
+              {!sidebarCollapsed && <span className="sidebar-label">{item.label}</span>}
+            </button>
+          ))}
+        </nav>
+        
+        {activeTab === 'calendar' && !sidebarCollapsed && (
+          <div className="sidebar-actions">
+            <button className="sidebar-action-btn" onClick={handleAddProject}>
+              <PlusCircle size={18} />
+              <span>새 프로젝트</span>
+            </button>
+            
+            <label htmlFor="excel-upload" className="sidebar-action-btn">
+              <Upload size={18} />
+              <span>엑셀 업로드</span>
+            </label>
+            <input 
+              id="excel-upload" 
+              type="file" 
+              accept=".xls,.xlsx" 
+              onChange={handleFileUpload} 
+              style={{ display: 'none' }} 
+            />
+          </div>
+        )}
+        
+        <div className="sidebar-footer">
+          <button className="theme-toggle-btn" onClick={toggleTheme} title={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}>
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {!sidebarCollapsed && <span>{isDarkMode ? '라이트 모드' : '다크 모드'}</span>}
+          </button>
+        </div>
+      </div>
 
-      <main className="pms-main">
-        {activeTab === 'calendar' && (
-          <div className="dashboard-grid">
-            <section className="calendar-section glass-panel">
-              <Calendar
-                selectedDate={selectedDate}
-                onDateClick={handleDateClick}
-                projects={projects}
-              />
-            </section>
+      <div className="main-content">
+        <header className="main-header glass-panel">
+          <div className="header-content">
+            <h1 className="page-title">
+              {navItems.find(item => item.id === activeTab)?.label}
+            </h1>
+            <div className="header-right">
+              <Clock />
+              {activeTab === 'calendar' && sidebarCollapsed && (
+                <div className="header-actions">
+                  <button className="header-action-btn" onClick={handleAddProject}>
+                    <PlusCircle size={18} />
+                    <span>새 프로젝트</span>
+                  </button>
+                  
+                  <label htmlFor="excel-upload-header" className="header-action-btn">
+                    <Upload size={18} />
+                    <span>엑셀 업로드</span>
+                  </label>
+                  <input 
+                    id="excel-upload-header" 
+                    type="file" 
+                    accept=".xls,.xlsx" 
+                    onChange={handleFileUpload} 
+                    style={{ display: 'none' }} 
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </header>
 
-            <section className="detail-section glass-panel">
-              <div className="detail-header">
-                <h2>{selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })} 일정</h2>
-              </div>
-              <div className="project-list">
-                {activeProjects.length > 0 ? (
-                  activeProjects.map(project => (
-                    <div
-                      key={project.id}
-                      className="project-card card"
-                      onClick={() => handleEditProject(project)}
-                      style={{
-                        '--project-color': project.color,
-                        '--project-color-bg': project.color + '25' // 15% opacity tint
-                      }}
-                    >
-                      <div className="project-info">
-                        <h3>{project.productName} <span className="client">({project.client})</span></h3>
-                        <p className="capacity">목표 용량: {project.capacity}Kg</p>
-                        <div className="progress-wrapper">
-                          <span>진행률: {project.progress}%</span>
-                          <div className="progress-container">
-                            <div className="progress-bar" style={{ width: `${project.progress}%`, backgroundColor: project.color }}></div>
+        <main className="main-area">
+          {activeTab === 'calendar' && (
+            <div className="dashboard-grid">
+              <section className="calendar-section glass-panel">
+                <Calendar
+                  selectedDate={selectedDate}
+                  onDateClick={handleDateClick}
+                  projects={projects}
+                />
+              </section>
+
+              <section className="detail-section glass-panel">
+                <div className="detail-header">
+                  <h2>{selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })} 일정</h2>
+                </div>
+                <div className="project-list">
+                  {activeProjects.length > 0 ? (
+                    activeProjects.map(project => (
+                      <div
+                        key={project.id}
+                        className="project-card card"
+                        onClick={() => handleEditProject(project)}
+                        style={{
+                          '--project-color': project.color,
+                          '--project-color-bg': project.color + '25' // 15% opacity tint
+                        }}
+                      >
+                        <div className="project-info">
+                          <h3>{project.productName} <span className="client">({project.client})</span></h3>
+                          <p className="capacity">목표 용량: {project.capacity}Kg</p>
+                          <div className="progress-wrapper">
+                            <span>진행률: {project.progress}%</span>
+                            <div className="progress-container">
+                              <div className="progress-bar" style={{ width: `${project.progress}%`, backgroundColor: project.color }}></div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="empty-state">해당 일자의 공정 일정이 없습니다.</div>
-                )}
-              </div>
-            </section>
-          </div>
-        )}
+                    ))
+                  ) : (
+                    <div className="empty-state">해당 일자의 공정 일정이 없습니다.</div>
+                  )}
+                </div>
+              </section>
+            </div>
+          )}
 
-        {activeTab === 'dashboard' && (
-          <Dashboard projects={projects} />
-        )}
+          {activeTab === 'dashboard' && (
+            <Dashboard projects={projects} />
+          )}
 
-        {activeTab === 'progress' && (
-          <ProcessProgress />
-        )}
+          {activeTab === 'progress' && (
+            <ProcessProgress />
+          )}
 
-        {activeTab === 'production' && (
-          <ProductionDashboard projects={projects} />
-        )}
-      </main>
+          {activeTab === 'production' && (
+            <ProductionDashboard projects={projects} />
+          )}
+        </main>
+      </div>
 
       {isModalOpen && (
         <ProjectModal

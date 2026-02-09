@@ -2,36 +2,53 @@
 
 :root {
   /* Light Mode (Default) - Higher Contrast */
-  --bg-color: #f1f5f9;
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
   --card-bg: #ffffff;
-  --border-color: #cbd5e1;
+  --border-color: #e2e8f0;
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --accent-color: #2563eb;
-  --accent-hover: #1d4ed8;
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #0ea5e9;
+  
+  /* 사이드바 색상 - 라이트 모드 */
+  --sidebar-bg: #1e293b;
+  --sidebar-text: #f8fafc;
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: #3b82f6;
+  
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.9);
-  --header-bg: #ffffff;
+  --input-bg: #ffffff;
 
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--text-primary);
-  background-color: var(--bg-color);
+  background-color: var(--bg-primary);
   transition: all 0.3s ease;
 }
 
 .dark-mode {
   /* Dark Mode - Higher Contrast */
-  --bg-color: #020617;
-  --card-bg: #0f172a;
-  --border-color: #1e293b;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --card-bg: #1e293b;
+  --border-color: #334155;
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
+  
+  /* 사이드바 색상 - 다크 모드 */
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #f8fafc;
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
+  --sidebar-active: #3b82f6;
+  
   --glass-bg: rgba(15, 23, 42, 0.8);
   --glass-border: rgba(51, 65, 85, 0.5);
-  --header-bg: #0f172a;
+  --input-bg: #1e293b;
 }
 
 * {
@@ -67,7 +84,7 @@ body {
 }
 
 .card:hover {
-  border-color: var(--accent-color);
+  border-color: var(--primary-color);
   transform: translateY(-2px);
 }
 
@@ -81,12 +98,12 @@ button {
 }
 
 button.primary {
-  background: var(--accent-color);
+  background: var(--primary-color);
   color: white;
 }
 
 button.primary:hover {
-  background: var(--accent-hover);
+  background: var(--primary-hover);
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
@@ -94,14 +111,14 @@ button.primary:hover {
 .progress-container {
   width: 100%;
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
   border-radius: 4px;
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  background: var(--accent-color);
+  background: var(--primary-color);
   transition: width 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 }
 
@@ -119,7 +136,7 @@ button.primary:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -130,3 +147,31 @@ button.primary:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
+
+/* 입력 필드 스타일 */
+input, select, textarea {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* 상태 색상 클래스 */
+.status-success { color: var(--success-color); }
+.status-warning { color: var(--warning-color); }
+.status-danger { color: var(--danger-color); }
+.status-info { color: var(--info-color); }
+
+.bg-success { background-color: var(--success-color); }
+.bg-warning { background-color: var(--warning-color); }
+.bg-danger { background-color: var(--danger-color); }
+.bg-info { background-color: var(--info-color); }
