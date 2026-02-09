@@ -6,7 +6,23 @@ import Clock from './components/Clock.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import ProcessProgress from './components/ProcessProgress.jsx';
 import ProductionDashboard from './components/ProductionDashboard.jsx';
-import { Calendar as CalendarIcon, BarChart3, LineChart, Activity, Upload, PlusCircle, Sun, Moon } from 'lucide-react';
+import { 
+  Calendar as CalendarIcon, 
+  BarChart3, 
+  LineChart, 
+  Activity, 
+  Upload, 
+  PlusCircle, 
+  Sun, 
+  Moon,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardList,
+  FileSpreadsheet,
+  AlertCircle,
+  Settings,
+  HelpCircle
+} from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -124,18 +140,21 @@ function App() {
     <div className="pms-container">
       {isLoading && (
         <div className="loading-overlay">
-          <div className="loading-spinner">데이터를 불러오는 중...</div>
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <div>데이터를 불러오는 중...</div>
+          </div>
         </div>
       )}
       
       <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
           <div className="logo-container">
-            <img src="/logo.svg" alt="Logo" className="sidebar-logo" />
+            <img src="/logo.svg" alt="H&A PharmaChem" className="sidebar-logo" />
             {!sidebarCollapsed && <h2>생산관리시스템</h2>}
           </div>
-          <button className="sidebar-toggle" onClick={toggleSidebar}>
-            {sidebarCollapsed ? '›' : '‹'}
+          <button className="sidebar-toggle" onClick={toggleSidebar} aria-label="사이드바 토글">
+            {sidebarCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
           </button>
         </div>
         
@@ -146,6 +165,7 @@ function App() {
               className={`sidebar-nav-item ${activeTab === item.id ? 'active' : ''}`}
               onClick={() => setActiveTab(item.id)}
               title={sidebarCollapsed ? item.label : ''}
+              aria-label={item.label}
             >
               <span className="sidebar-icon">{item.icon}</span>
               {!sidebarCollapsed && <span className="sidebar-label">{item.label}</span>}
@@ -155,13 +175,13 @@ function App() {
         
         {activeTab === 'calendar' && !sidebarCollapsed && (
           <div className="sidebar-actions">
-            <button className="sidebar-action-btn" onClick={handleAddProject}>
+            <button className="sidebar-action-btn" onClick={handleAddProject} aria-label="새 프로젝트 추가">
               <PlusCircle size={18} />
               <span>새 프로젝트</span>
             </button>
             
-            <label htmlFor="excel-upload" className="sidebar-action-btn">
-              <Upload size={18} />
+            <label htmlFor="excel-upload" className="sidebar-action-btn" role="button" aria-label="엑셀 파일 업로드">
+              <FileSpreadsheet size={18} />
               <span>엑셀 업로드</span>
             </label>
             <input 
@@ -170,20 +190,39 @@ function App() {
               accept=".xls,.xlsx" 
               onChange={handleFileUpload} 
               style={{ display: 'none' }} 
+              aria-hidden="true"
             />
           </div>
         )}
         
         <div className="sidebar-footer">
-          <button className="theme-toggle-btn" onClick={toggleTheme} title={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}>
+          <button 
+            className="theme-toggle-btn" 
+            onClick={toggleTheme} 
+            title={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
+            aria-label={isDarkMode ? '라이트 모드로 전환' : '다크 모드로 전환'}
+          >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             {!sidebarCollapsed && <span>{isDarkMode ? '라이트 모드' : '다크 모드'}</span>}
           </button>
+          
+          {!sidebarCollapsed && (
+            <>
+              <button className="theme-toggle-btn" title="설정" aria-label="설정">
+                <Settings size={18} />
+                <span>설정</span>
+              </button>
+              <button className="theme-toggle-btn" title="도움말" aria-label="도움말">
+                <HelpCircle size={18} />
+                <span>도움말</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       <div className="main-content">
-        <header className="main-header glass-panel">
+        <header className="main-header">
           <div className="header-content">
             <h1 className="page-title">
               {navItems.find(item => item.id === activeTab)?.label}
@@ -192,13 +231,13 @@ function App() {
               <Clock />
               {activeTab === 'calendar' && sidebarCollapsed && (
                 <div className="header-actions">
-                  <button className="header-action-btn" onClick={handleAddProject}>
+                  <button className="header-action-btn" onClick={handleAddProject} aria-label="새 프로젝트 추가">
                     <PlusCircle size={18} />
                     <span>새 프로젝트</span>
                   </button>
                   
-                  <label htmlFor="excel-upload-header" className="header-action-btn">
-                    <Upload size={18} />
+                  <label htmlFor="excel-upload-header" className="header-action-btn" role="button" aria-label="엑셀 파일 업로드">
+                    <FileSpreadsheet size={18} />
                     <span>엑셀 업로드</span>
                   </label>
                   <input 
@@ -207,6 +246,7 @@ function App() {
                     accept=".xls,.xlsx" 
                     onChange={handleFileUpload} 
                     style={{ display: 'none' }} 
+                    aria-hidden="true"
                   />
                 </div>
               )}
@@ -217,7 +257,7 @@ function App() {
         <main className="main-area">
           {activeTab === 'calendar' && (
             <div className="dashboard-grid">
-              <section className="calendar-section glass-panel">
+              <section className="calendar-section">
                 <Calendar
                   selectedDate={selectedDate}
                   onDateClick={handleDateClick}
@@ -225,7 +265,7 @@ function App() {
                 />
               </section>
 
-              <section className="detail-section glass-panel">
+              <section className="detail-section">
                 <div className="detail-header">
                   <h2>{selectedDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' })} 일정</h2>
                 </div>
@@ -234,15 +274,18 @@ function App() {
                     activeProjects.map(project => (
                       <div
                         key={project.id}
-                        className="project-card card"
+                        className="project-card"
                         onClick={() => handleEditProject(project)}
                         style={{
                           '--project-color': project.color,
-                          '--project-color-bg': project.color + '25' // 15% opacity tint
+                          '--project-color-bg': project.color + '15' // 10% opacity tint
                         }}
                       >
                         <div className="project-info">
-                          <h3>{project.productName} <span className="client">({project.client})</span></h3>
+                          <h3>
+                            <ClipboardList size={18} />
+                            {project.productName} <span className="client">({project.client})</span>
+                          </h3>
                           <p className="capacity">목표 용량: {project.capacity}Kg</p>
                           <div className="progress-wrapper">
                             <span>진행률: {project.progress}%</span>
@@ -254,7 +297,12 @@ function App() {
                       </div>
                     ))
                   ) : (
-                    <div className="empty-state">해당 일자의 공정 일정이 없습니다.</div>
+                    <div className="empty-state">
+                      <div className="empty-state-icon">
+                        <AlertCircle size={48} />
+                      </div>
+                      <p>해당 일자의 공정 일정이 없습니다.</p>
+                    </div>
                   )}
                 </div>
               </section>
