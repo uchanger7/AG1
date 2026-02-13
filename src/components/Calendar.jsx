@@ -35,6 +35,10 @@ const Calendar = ({ selectedDate, onDateClick, projects }) => {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     };
+    
+    // 오늘 날짜 확인을 위한 변수
+    const today = new Date();
+    const todayStr = formatDateStr(today);
 
     for (let d = 1; d <= daysInMonth; d++) {
         const date = new Date(year, month, d);
@@ -43,6 +47,7 @@ const Calendar = ({ selectedDate, onDateClick, projects }) => {
         const isHoliday = HOLIDAYS_2026.includes(dateStr);
         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
         const isSelected = formatDateStr(selectedDate) === dateStr;
+        const isToday = dateStr === todayStr; // 오늘 날짜 체크
 
         const isNonWorkingDay = isHoliday || isWeekend;
         const dayProjects = projects.filter(p => {
@@ -56,7 +61,8 @@ const Calendar = ({ selectedDate, onDateClick, projects }) => {
             return (dateStr >= startStr && dateStr <= endStr) || dateStr === dueStr;
         });
 
-        const dayClass = `calendar-day ${isSelected ? 'selected' : ''} ${dayOfWeek === 0 || isHoliday ? 'holiday' : ''} ${dayOfWeek === 6 ? 'saturday' : ''}`;
+        // 클래스에 오늘 날짜 표시 추가
+        const dayClass = `calendar-day ${isSelected ? 'selected' : ''} ${isToday ? 'today' : ''} ${dayOfWeek === 0 || isHoliday ? 'holiday' : ''} ${dayOfWeek === 6 ? 'saturday' : ''}`;
 
         days.push(
             <div

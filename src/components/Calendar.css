@@ -58,13 +58,24 @@
     background: rgba(255, 255, 255, 0.08);
 }
 
+/* 캘린더 선택된 날짜 스타일 개선 */
 .calendar-day.selected {
-    background-color: var(--accent-color) !important;
+    background-color: var(--primary-600) !important;
     color: #ffffff !important;
+    box-shadow: 0 0 0 2px var(--primary-400), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
+/* 오늘 날짜 표시 추가 */
+.calendar-day.today {
+    border: 2px solid var(--primary-500);
+    background-color: rgba(59, 130, 246, 0.15);
+}
+
+/* 라이트 모드에서 선택된 날짜 가시성 개선 */
 .calendar-day.selected .day-number {
+    color: #ffffff !important;
     font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .day-number {
@@ -80,10 +91,6 @@
 .calendar-day.saturday .day-number {
     color: #3b82f6;
     /* Blue for Saturdays */
-}
-
-.calendar-day.selected .day-number {
-    color: #ffffff !important;
 }
 
 .day-events {
@@ -104,11 +111,31 @@
     font-weight: 600;
 }
 
+/* 라이트 모드에서 이벤트 가시성 개선 */
 .calendar-day.selected .calendar-event {
     background-color: rgba(255, 255, 255, 0.25) !important;
     border-left-color: #ffffff !important;
     color: #ffffff !important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 700;
+}
+
+/* 다크 모드에서 일반 날짜 가시성 개선 */
+.dark-mode .calendar-day {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .calendar-day:hover:not(.empty) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 다크 모드에서 주말/휴일 색상 강화 */
+.dark-mode .calendar-day.holiday .day-number {
+    color: #f87171; /* 더 밝은 빨간색 */
+}
+
+.dark-mode .calendar-day.saturday .day-number {
+    color: #60a5fa; /* 더 밝은 파란색 */
 }
 
 .event-more {

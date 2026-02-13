@@ -285,6 +285,18 @@
   width: 100%;
 }
 
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.today-date {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 .page-title {
   font-size: var(--font-size-2xl);
   font-weight: 700;
@@ -542,12 +554,27 @@
   border-radius: var(--border-radius-full);
 }
 
+/* 공정 진행률 글씨 가시성 개선 */
 .progress-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
+  font-weight: 500; /* 글씨 굵기 추가 */
+}
+
+/* 다크 모드에서 공정 진행률 글씨 가시성 개선 */
+.dark-mode .progress-wrapper {
+  color: rgba(255, 255, 255, 0.9); /* 다크 모드에서 더 밝은 색상 사용 */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* 가독성을 위한 텍스트 그림자 추가 */
+}
+
+/* 프로젝트 카드 내 텍스트 가시성 개선 */
+.dark-mode .project-info h3,
+.dark-mode .capacity,
+.dark-mode .client {
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .progress-container {
